@@ -1,0 +1,56 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk rootProject.compile_sdk_version
+
+    defaultConfig {
+        applicationId "com.sliide.app"
+        minSdk rootProject.min_sdk_version
+        targetSdk rootProject.target_sdk_version
+        versionCode getVersionCode()
+        versionName getVersionName()
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    // dependencies are defined in ext arrays in app/build.gradle
+    implementation libraries
+
+    testImplementation testLibraries
+    androidTestImplementation androidTestLibraries
+}
+
+static def getVersionCode() {
+    // Get CI/CD server environment variable for version code
+    def buildNumber = System.getenv('BUILD_NUMBER')
+
+    if (buildNumber != null && buildNumber.isNumber()) {
+        return buildNumber.toInteger()
+    }
+    return 1
+}
+
+static def getVersionName() {
+    def majorNumber = 0
+    def minorNumber = 0
+    return majorNumber + "." + minorNumber + "." + getVersionCode()
+}
