@@ -13,6 +13,7 @@ buildscript {
 
         kotlin_version = '1.6.10'
         agp_version = '7.0.2'
+        hilt_version = '2.38.1'
 
         // local variables
         def appcompat_version = '1.4.0'
@@ -21,6 +22,9 @@ buildscript {
         def expresso_version = '3.4.0'
         def junit_version = '4.12'
         def androidx_junit_version = '1.1.2'
+        def nav_version = "2.3.5"
+        def retrofit_version = "2.9.0"
+        def logging_interceptor_version = "4.9.3"
 
         libraries = [
                 // Kotlin standard library
@@ -30,6 +34,22 @@ buildscript {
                 "androidx.appcompat:appcompat:$appcompat_version",
                 "com.google.android.material:material:$material_version",
                 "androidx.constraintlayout:constraintlayout:$constraint_layout_version",
+
+                // Navigation
+                "androidx.navigation:navigation-fragment-ktx:$nav_version",
+                "androidx.navigation:navigation-ui-ktx:$nav_version",
+
+                // Dependency injection
+                "com.google.dagger:hilt-android:$hilt_version",
+
+                // Network
+                "com.squareup.retrofit2:retrofit:$retrofit_version",
+                "com.squareup.retrofit2:converter-gson:$retrofit_version",
+                "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version",
+        ]
+
+        librariesKapt = [
+                "com.google.dagger:hilt-compiler:$hilt_version",
         ]
 
         testLibraries = [
@@ -47,6 +67,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$agp_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

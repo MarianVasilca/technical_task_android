@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -12,6 +14,9 @@ android {
         targetSdk rootProject.target_sdk_version
         versionCode getVersionCode()
         versionName getVersionName()
+
+        buildConfigField "String", "SERVER_URL", "\"https://gorest.co.in/\""
+        buildConfigField "String", "API_ACCESS_TOKEN", getApiAcessToken()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -29,11 +34,15 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
     // dependencies are defined in ext arrays in app/build.gradle
     implementation libraries
+    kapt librariesKapt
 
     testImplementation testLibraries
     androidTestImplementation androidTestLibraries
@@ -53,4 +62,19 @@ static def getVersionName() {
     def majorNumber = 0
     def minorNumber = 0
     return majorNumber + "." + minorNumber + "." + getVersionCode()
+}
+
+def getApiAcessToken() {
+    def fileName = 'api.properties'
+    def apiPropertyName = 'apiAccessToken'
+
+    def apiPropertiesFile = rootProject.file("api.properties")
+    def apiProperties = new Properties()
+
+    if (!apiPropertiesFile.exists()) {
+        throw new GradleException("Missing file '$fileName' with property '$apiPropertyName'")
+    }
+    apiProperties.load(new FileInputStream(apiPropertiesFile))
+
+    return "\"${apiProperties[apiPropertyName]}\""
 }
