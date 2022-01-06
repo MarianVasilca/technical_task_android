@@ -1,6 +1,21 @@
 <resources>
     <string name="app_name">Sliide Users</string>
+    <string name="error_network_request">Oops! Something went wrong. Try again.</string>
 
-    <string name="title_users">Users</string>
+    <!--Users Screen-->
+    <string name="users_title">Users</string>
+    <string name="dialog_delete_user_message">Are you sure you want to remove this user?</string>
+    <string name="dialog_delete_user_positive">Yes</string>
+    <string name="dialog_delete_user_negative">No</string>
+    <string name="attribute_description_add_user_button">Add user</string>
+
+    <!--Add User Screen-->
+    <string name="add_user_title">Add a new user</string>
+    <string name="add_user_name_hint">Enter a name</string>
+    <string name="add_user_email_hint">Enter an e-mail address</string>
+    <string name="add_user_cta">Add user</string>
+    <string name="add_user_cancel">Cancel</string>
+    <string name="add_user_error_invalid_input">Please check the e-mail and name again</string>
+    <string name="add_user_successful">User added</string>
 
 </resources>

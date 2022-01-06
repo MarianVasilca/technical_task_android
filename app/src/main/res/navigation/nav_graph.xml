@@ -7,6 +7,15 @@
     <fragment
         android:id="@+id/users"
         android:name="com.sliide.app.ui.users.UsersFragment"
-        android:label="@string/title_users" />
+        android:label="@string/users_title">
+        <action
+            android:id="@+id/action_users_to_addUser"
+            app:destination="@+id/addUser" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/addUser"
+        android:name="com.sliide.app.ui.add_user.AddUserFragment"
+        android:label="@string/add_user_title" />
 
 </navigation>

@@ -1,7 +1,7 @@
 package com.sliide.app.di
 
 import com.sliide.app.BuildConfig
-import com.sliide.app.data.UserAPI
+import com.sliide.app.data.network.UserAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,11 +39,13 @@ object ApiModule {
     @Singleton
     @Provides
     fun providesOkHttpClient(
-        httpLoggingInterceptor: HttpLoggingInterceptor
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        headerInterceptor: Interceptor,
     ): OkHttpClient =
         OkHttpClient
             .Builder()
             .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(headerInterceptor)
             .build()
 
     @Singleton

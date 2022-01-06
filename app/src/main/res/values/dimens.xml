@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Spacing -->
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+
+    <!-- Corners -->
+    <dimen name="corner_medium">16dp</dimen>
+    
+</resources>

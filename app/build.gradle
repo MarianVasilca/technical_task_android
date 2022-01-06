@@ -15,8 +15,8 @@ android {
         versionCode getVersionCode()
         versionName getVersionName()
 
-        buildConfigField "String", "SERVER_URL", "\"https://gorest.co.in/\""
-        buildConfigField "String", "API_ACCESS_TOKEN", getApiAcessToken()
+        buildConfigField "String", "SERVER_URL", "\"https://gorest.co.in/public/v1/\""
+        buildConfigField "String", "API_ACCESS_TOKEN", getApiAccessToken()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -64,11 +64,11 @@ static def getVersionName() {
     return majorNumber + "." + minorNumber + "." + getVersionCode()
 }
 
-def getApiAcessToken() {
+def getApiAccessToken() {
     def fileName = 'api.properties'
     def apiPropertyName = 'apiAccessToken'
 
-    def apiPropertiesFile = rootProject.file("api.properties")
+    def apiPropertiesFile = rootProject.file(fileName)
     def apiProperties = new Properties()
 
     if (!apiPropertiesFile.exists()) {
